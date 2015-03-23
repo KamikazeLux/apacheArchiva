@@ -2,10 +2,10 @@ FROM java:7u65
 
 MAINTAINER Mike DE DOOD
 
-ENV ARCHIVA_VERSION 1.3.9
+ENV ARCHIVA_VERSION 2.2.0
 ENV ARCHIVA_BASE /var/archiva
 
-RUN curl -sSLo /tmp/apache-archiva-$ARCHIVA_VERSION-bin.tar.gz http://apache.mirrors.pair.com/archiva/$ARCHIVA_VERSION/binaries/apache-archiva-$ARCHIVA_VERSION.1-bin.tar.gz \
+RUN curl -sSLo /tmp/apache-archiva-$ARCHIVA_VERSION-bin.tar.gz http://apache.mirrors.tds.net/archiva/$ARCHIVA_VERSION/binaries/apache-archiva-$ARCHIVA_VERSION-bin.tar.gz \
   && tar -xf /tmp/apache-archiva-$ARCHIVA_VERSION-bin.tar.gz --directory /opt \
   && rm /tmp/apache-archiva-$ARCHIVA_VERSION-bin.tar.gz
 
@@ -18,8 +18,8 @@ RUN mkdir -p $ARCHIVA_BASE/logs $ARCHIVA_BASE/data $ARCHIVA_BASE/temp $ARCHIVA_B
 RUN mv conf/* $ARCHIVA_BASE/conf
 RUN chown -R archiva:archiva $ARCHIVA_BASE
 
-# make archiva use ARCHIVA_BASE 
-RUN rmdir logs conf
+# temp fix because ARCHIVA_BASE is not use by archiva :(
+RUN rmdir logs conf temp
 RUN ln -s $ARCHIVA_BASE/logs logs
 RUN ln -s $ARCHIVA_BASE/conf conf
 RUN ln -s $ARCHIVA_BASE/data data
