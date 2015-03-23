@@ -45,5 +45,11 @@ docker run -p 8080:8080 kamikazelux/archivadocker
 docker run -d -p 8080:8080 -v /local/folder:/var/archiva --name="archiva" kamikazelux/archivadocker
 ```
 
+## Access Archiva
+You can now access archiva via:
+<hostIP>:8080/archiva
+
+Note: The startup of archiva takes a little.
+
 ## Issues & Improvements
 For issues and improvements contact us on [Github](14318410005).
